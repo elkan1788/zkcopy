@@ -8,7 +8,7 @@ Originally it was developed for copying big volumes of configuration over WAN.
 Requires [apache maven 3](https://maven.apache.org/).
 
 ```bash
-mvn clean install
+mvn clean package
 ```
 
 ## Usage
@@ -16,12 +16,28 @@ mvn clean install
 ```bash
 java -jar target/zkcopy.jar --source server:port/path --target server:port/path
 ```
+Or
+```
+java -Dsource="server:port/path" \
+     -Ddestination="server:port/path" \
+     -Dthreads=10 \
+     -DremoveDeprecatedNodes=true \
+     -jar target/zkcopy-release-version.jar
+```
 
 For [docker](https://hub.docker.com/r/kshchepanovskyi/zkcopy/), use following commands:
 
 ```bash
 docker pull kshchepanovskyi/zkcopy
 docker run --rm -it kshchepanovskyi/zkcopy --source server:port/path --target server:port/path
+```
+Or
+```
+docker run --rm -it kshchepanovskyi/zkcopy \
+    -Dsource="server:port/path" \
+    -Ddestination="server:port/path" \
+    -Dthreads=10 \
+    -DremoveDeprecatedNodes=true
 ```
 
 ## Options
